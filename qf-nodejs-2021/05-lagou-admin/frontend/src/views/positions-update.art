@@ -1,0 +1,24 @@
+<div class="modal fade" id="pos-modal-update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">编辑职位</h4>
+      </div>
+      <div class="modal-body">
+        <!-- general form elements -->
+        <div class="box box-primary">
+          <!-- form start -->
+          <form role="form" enctype="multipart/form-data" id="position-form-update">
+            
+          </form>
+        </div>
+        <!-- /.box -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="positions-close-update">关闭</button>
+        <button type="button" class="btn btn-primary" id="positions-save-update">保存</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -1,0 +1,46 @@
+一、数据库操作
+db // 查询当前数据库
+show dbs // 查询所有的数据库
+use music  //创建/切换数据库
+db.dropDataBase() //删除数据库
+
+二、集合操作
+db.createCollection('collectionName') 创建一个集合
+db.getCollectionNames() 得到当前db的所有集合
+
+三、文档操作
+1、插入数据
+db.baoguo.insert([{name: 'm1', release: '2020-12-05'}])
+db.baoguo.insert([{name: 'm2', release: '2020-12-05'}, {name: 'm3', release: '2020-12-06'}])
+db.baoguo.save([{name: 'm4', release: '2020-12-07'}, {name: 'm5', release: '2020-12-08'}])
+db.baoguo.insert([{name: 'm1', release: '2020-12-05', publishNum: 100}])
+
+2、修改数据
+db.baoguo.update({name: 'm1'}, {$set: {release:'2020-12-04'}})
+db.baoguo.update({name: 'm100'}, {$inc: {publishNum: 200}}, true)
+db.baoguo.update({name: 'm1000'}, {$inc: {publishNum: 200}}, true)
+db.baoguo.update({name: 'm1'}, {$inc: {publishNum: 200}}, true, true)
+
+3、删除数据
+db.baoguo.remove({name: 'm1000'})
+
+4、查询数据
+db.baoguo.find()
+db.baoguo.distinct('name')
+db.baoguo.find({release: '2020-12-05'})
+db.baoguo.find({release: {$gt: '2020-12-05'}})
+db.baoguo.find({release: {$gte: '2020-12-05'}})
+db.baoguo.find({release: {$lt: '2020-12-05'}})
+db.baoguo.find({release: {$lte: '2020-12-05'}})
+db.baoguo.find({release: {$gte: '2020-12-04', $lte: '2020-12-06'}})
+db.baoguo.find({name:/^1/})
+db.baoguo.find({name:/1$/})
+db.baoguo.find({}, {_id: 0, publishNum: 0})
+db.baoguo.find({name:/1$/}, {_id: 0, publishNum: 0})
+db.baoguo.find().sort({release: 1})
+db.baoguo.find().sort({release: -1})
+db.baoguo.find().sort({release: 1}).limit(3).skip(6)
+db.baoguo.find().limit(3).skip(6).sort({release: 1})
+db.baoguo.find({$or:[{release: '2020-12-04'}, {release: '2020-12-05'}]})
+db.baoguo.findOne()
+db.baoguo.find().count()

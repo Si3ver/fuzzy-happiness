@@ -1,2 +1,3 @@
 # fuzzy-happiness
-learn/try interesting techics
+
+学习使我快乐
