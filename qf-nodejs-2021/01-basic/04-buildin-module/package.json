@@ -13,7 +13,7 @@
     "log4js": "^6.3.0"
   },
   "dependencies": {
-    "cheerio": "^1.0.0-rc.3",
-    "http-proxy-middleware": "^1.0.6"
+    "cheerio": "^1.0.0-rc.10",
+    "http-proxy-middleware": "^2.0.1"
   }
 }

@@ -1,5 +1,5 @@
 const name = {
-  surname: 'zhang',
+  surname: 'zhou',
   sayName() {
     console.log(this.surname)
   }
@@ -12,21 +12,7 @@ const age = {
 // exports.name = name
 // exports.age = age
 
-// module.exports = {
-//   name,
-//   age
-// }
-// const exports = module.exports
-
-// exports = {
-//   name,
-//   age
-// }
-
-// exports.default = {
-
-// }
-
-// module.exports = {
-//   default
-// }
+module.exports = {
+  name,
+  age
+}

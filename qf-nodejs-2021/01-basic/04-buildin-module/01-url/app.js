@@ -1,6 +1,9 @@
+/**
+ * 
+ */
+const url = require('url')
 const logger = require('../utils/log')
 
-const url = require('url')
 
 const urlString = 'https://www.baidu.com:443/path/index.html?id=2#tag=3'
 
