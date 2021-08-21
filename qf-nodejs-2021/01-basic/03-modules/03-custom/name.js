@@ -17,7 +17,6 @@ const age = {
 //   age
 // }
 // const exports = module.exports
- 
 
 // exports = {
 //   name,
