@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "test": "parcel ./src/index.html"
+    "dev": "parcel ./src/index.html"
   },
   "devDependencies": {
     "parcel": "^2.0.0-rc.0"

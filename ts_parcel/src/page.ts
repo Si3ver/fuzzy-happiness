@@ -1,2 +1,4 @@
-const student: string = 'william'
-console.log(student)
+$(function() {
+  // alert('111')
+  $('body').html('<div>123</div>')
+})
