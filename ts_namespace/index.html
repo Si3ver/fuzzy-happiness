@@ -5,11 +5,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.js"></script>
   <script src="./dist/page.js"></script>
 </head>
 <body>
   <script>
-    Home.Page()
+    require(['page'], function(page) {
+      new page.default()
+    })
   </script>
 </body>
 </html>
