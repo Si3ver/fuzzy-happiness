@@ -6,3 +6,7 @@ export default class Page {
     new Footer();
   }
 }
+
+new Page()
+new Page()
+new Page()
