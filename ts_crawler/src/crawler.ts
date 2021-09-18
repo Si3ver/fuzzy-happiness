@@ -1,13 +1,12 @@
 import fs from 'fs'
 import path from 'path'
 import superagent from 'superagent'
-import DellAnalyzer from './dellAnalyzer'
 
 export interface Analyzer {
   analyze: (html: string, filePath: string) => string
 }
 
-class Crawler {
+export default class Crawler {
 
   private filePath = path.resolve(__dirname, '../data/course.json')
 
@@ -30,12 +29,3 @@ class Crawler {
     this.initSpiderProcess()
   }
 }
-
-const secret = 'x3b174jsx'
-const url = `http://www.dell-lee.com/typescript/demo.html?secret=${secret}`
-
-const analyzer1 = DellAnalyzer.getInstance()
-const analyzer2 = DellAnalyzer.getInstance()
-console.log(analyzer1 === analyzer2)
-new Crawler(url, analyzer2)
-console.log('ccc')
