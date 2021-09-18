@@ -4,12 +4,21 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node ./src/crawler.ts"
+    "dev": "concurrently npm:dev:*",
+    "dev:build": "tsc -w",
+    "dev:start": "nodemon node ./build/crawler.js"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "data/*"
+    ]
   },
   "devDependencies": {
     "@types/cheerio": "^0.22.30",
     "@types/node": "^16.9.1",
     "@types/superagent": "^4.1.12",
+    "concurrently": "^6.2.1",
+    "nodemon": "^2.0.12",
     "ts-node": "^10.2.1",
     "typescript": "^4.4.3"
   },
