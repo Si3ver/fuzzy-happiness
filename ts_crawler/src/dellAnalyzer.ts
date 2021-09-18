@@ -17,6 +17,16 @@ interface Content {
 }
 
 class DellAnalyzer implements Analyzer {
+
+  private static instance: DellAnalyzer
+
+  static getInstance() {
+    if (!DellAnalyzer.instance) {
+      DellAnalyzer.instance = new DellAnalyzer()
+    }
+    return DellAnalyzer.instance
+  }
+
   private getCourseInfo(html: string) {
     const $ = cherrio.load(html)
     const courseItems = $('.course-item')
@@ -51,6 +61,8 @@ class DellAnalyzer implements Analyzer {
     const fileContent = this.generateJsonContent(courseInfo, filePath)
     return JSON.stringify(fileContent, null, 2)
   }
+
+  private constructor() {}
 }
 
 export default DellAnalyzer
