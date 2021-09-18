@@ -7,14 +7,20 @@ interface JqueryInstance {
 }
 
 // 函数重载
-// declare function $(readyFunc: () => void): void
-// declare function $(selector: string): JqueryInstance
+declare function $(readyFunc: () => void): void
+declare function $(selector: string): JqueryInstance
 
-// 使用interface的方式实现函数重载
-interface JQuery {
-  (readyFunc: () => void): void
-  (selector: string): JqueryInstance
+declare namespace $ { // 既是函数，又是对象，用这种方式定义
+  declare namespace fn {
+    class init {}
+  }
 }
 
-declare var $: Jquery
+// 使用interface的方式实现函数重载
+// interface JQuery {
+//   (readyFunc: () => void): void
+//   (selector: string): JqueryInstance
+// }
+
+// declare var $: Jquery
 
