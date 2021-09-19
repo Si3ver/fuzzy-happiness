@@ -1,5 +1,3 @@
-import fs from 'fs'
-import cherrio from 'cheerio'
 import { Analyzer } from './crawler'
 
 class LeeAnalyzer implements Analyzer {
