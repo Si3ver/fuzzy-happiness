@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import consola from 'consola'
 import { Router, Request, Response } from 'express'
 import DellAnalyzer from './dellAnalyzer'
 import Crawler from './crawler'
@@ -52,6 +53,7 @@ router.post('/login', (req: RequestWithBody, res: Response) => {
   if (isLogin) {
     res.send('已经登录过')
   } else {
+    consola.info(req.session?.login)
     if (password === '123' && req.session) {
       req.session.login = true
       res.send('登录成功')
@@ -75,6 +77,7 @@ router.get('/getData', (req: RequestWithBody, res: Response) => {
 })
 
 router.get('/showData', (req: RequestWithBody, res: Response) => {
+  consola.info('showData: session.login', req.session?.login)
   const isLogin = req.session ? req.session.login : false;
   if (isLogin) {
     try {
