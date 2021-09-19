@@ -1,10 +1,18 @@
 import express, { Request, Response, NextFunction } from 'express'
+import cookieSession from 'cookie-session'
 import router from './router'
 
 const app = express()
 const port = 7001
 
 app.use(express.urlencoded({ extended: false }))
+
+app.use(cookieSession({
+  name: 'session',
+  keys: ['author william'],
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}))
+
 // 自定义中间件
 app.use((req: Request, res: Response, next: NextFunction) => {
   req.authorName = 'william'
