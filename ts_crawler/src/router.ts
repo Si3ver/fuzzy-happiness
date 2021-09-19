@@ -1,10 +1,16 @@
-import { Router } from 'express'
+import { Router, Request, Response } from 'express'
 import DellAnalyzer from './dellAnalyzer'
 import Crawler from './crawler'
 
+interface RequestWithBody extends Request {
+  body: {
+    [key: string]: string | undefined
+  }
+}
+
 const router = Router()
 
-router.get('/', (req, res) => {
+router.get('/', (req: Request, res: Response) => {
   res.send(`
     <html>
       <body>
@@ -17,7 +23,7 @@ router.get('/', (req, res) => {
   `)
 })
 
-router.post('/getData', (req, res) => {
+router.post('/getData', (req: RequestWithBody, res: Response) => {
   console.log(req.body)
   if (req.body.password === '123') {
     const secret = 'x3b174jsx'
@@ -26,7 +32,7 @@ router.post('/getData', (req, res) => {
     new Crawler(url, analyzer)
     res.send('getData success')
   } else {
-    res.send('password Error!')
+    res.send(`${req.authorName} password Error!`)
   }
 })
 
