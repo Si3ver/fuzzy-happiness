@@ -1,6 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express'
 import cookieSession from 'cookie-session'
-import router from './router'
+import './controller/LoginController'
+import { router } from './controller/decorators'
 
 const app = express()
 const port = 7001
