@@ -24,7 +24,7 @@ const checkLogin = (req: BodyRequest, res: Response, next: NextFunction): void =
 }
 
 @controller
-class CrawlerController {
+export class CrawlerController {
 
   @get('/getData')
   @use(checkLogin)
