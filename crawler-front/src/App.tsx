@@ -1,12 +1,14 @@
-// import React from 'react';
+import { HashRouter, Switch, Route } from 'react-router-dom'
 import LoginPage from './views/login'
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <LoginPage />
+    <div>
+      <HashRouter>
+        <Switch>
+          <Route path="/login" exact component={LoginPage}></Route>
+        </Switch>
+      </HashRouter>
     </div>
-  );
+  )
 }
-
-export default App;

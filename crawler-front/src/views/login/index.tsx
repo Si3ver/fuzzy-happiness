@@ -1,6 +1,6 @@
 import { Form, Input, Button } from 'antd';
 import { LockOutlined } from '@ant-design/icons';
-import './login.css'
+import './index.css'
 
 const LoginPage = () => {
   const onFinish = (values: any) => {
