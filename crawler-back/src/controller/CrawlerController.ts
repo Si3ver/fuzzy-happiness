@@ -29,7 +29,7 @@ const testMiddleware = (req: BodyRequest, res: Response, next: NextFunction): vo
   next()
 }
 
-@controller('/')
+@controller('/api')
 export class CrawlerController {
 
   @get('/getData')

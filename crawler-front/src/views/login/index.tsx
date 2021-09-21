@@ -22,17 +22,15 @@ const LoginPage = () => {
         }
       }
     ).then(res => {
-      if (res.data) {
+      console.log('登录', res)
+      if (res.data?.data) {
         setIsLogin(true)
       } else {
-        // setTimeout(() => {
-          message.error('登录失败！')
-        // }, 1000)
+        message.error('登录失败！')
       }
     })
   };
 
-  // message.error('登录失败！')
   if (isLogin) {
     return <Redirect to="/" />
   }

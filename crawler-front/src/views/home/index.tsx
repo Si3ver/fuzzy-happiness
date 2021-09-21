@@ -21,6 +21,29 @@ export default function HomePage(): JSX.Element {
       })
   }, [])
 
+  const crawler = () => {
+    axios.get('/api/getData')
+    .then(res => {
+      console.log(res)
+      if (res.data?.data) {
+        message.success('爬取成功！')
+      } else {
+        message.error('爬取失败！')
+      }
+    })
+  }
+
+  const showData = () => {
+    axios.get('/api/showData')
+    .then(res => {
+      if (res.data?.data) {
+        console.log(res.data?.data)
+      } else {
+        message.error('获取数据失败！')
+      }
+    })
+  }
+
   const logout = () => {
     axios.get('/api/logout')
       .then(res => {
@@ -38,8 +61,8 @@ export default function HomePage(): JSX.Element {
     if (!loaded) return <div></div>
     return (
       <div className="home-page">
-        <Button type="primary" style={{marginLeft: '10px'}}>爬取</Button>
-        <Button type="primary">展示</Button>
+        <Button type="primary" style={{marginLeft: '10px'}} onClick={crawler}>爬取</Button>
+        <Button type="primary" onClick={showData}>展示</Button>
         <Button type="ghost" onClick={logout}>退出</Button>
       </div>
     )
