@@ -1,9 +1,10 @@
 // import React from 'react';
+import LoginPage from './views/login'
 
 function App() {
   return (
     <div className="App">
-      Learn React
+      <LoginPage />
     </div>
   );
 }
