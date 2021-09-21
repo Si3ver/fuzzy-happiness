@@ -12,10 +12,13 @@ interface BodyRequest extends Request {
 
 @controller
 class LoginController {
+  static isLogin(req: BodyRequest): boolean {
+    return !!(req.session ? req.session.login : false)
+  }
 
   @get('/')
-  home(req: BodyRequest, res: Response) {
-    const isLogin = req.session ? req.session.login : false
+  home(req: BodyRequest, res: Response): void {
+    const isLogin = LoginController.isLogin(req)
     if(isLogin) {
       res.send(`
         <html>
@@ -41,9 +44,9 @@ class LoginController {
   }
 
   @post('/login')
-  login(req: BodyRequest, res: Response) {
+  login(req: BodyRequest, res: Response): void {
     const { password } = req.body
-    const isLogin = req.session ? req.session.login : false
+    const isLogin = LoginController.isLogin(req)
 
     if (isLogin) {
       res.json(getResponseData(false, '已经登录过'))
@@ -59,7 +62,7 @@ class LoginController {
   }
 
   @get('/logout')
-  logout(req: BodyRequest, res: Response) {
+  logout(req: BodyRequest, res: Response): void {
     if (req.session) {
       req.session.login = undefined
     }

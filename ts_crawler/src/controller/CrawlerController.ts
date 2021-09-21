@@ -14,8 +14,8 @@ interface BodyRequest extends Request {
   }
 }
 
-const checkLogin = (req: BodyRequest, res: Response, next: NextFunction) => {
-  const isLogin = req.session ? req.session.login : false
+const checkLogin = (req: BodyRequest, res: Response, next: NextFunction): void => {
+  const isLogin = !!(req.session ? req.session.login : false)
   if (isLogin) {
     next()
   } else {
@@ -28,7 +28,7 @@ class CrawlerController {
 
   @get('/getData')
   @use(checkLogin)
-  getData(req: BodyRequest, res: Response) {
+  getData(req: BodyRequest, res: Response): void {
     const secret = 'x3b174jsx'
     const url = `http://www.dell-lee.com/typescript/demo.html?secret=${secret}`
     const analyzer = DellAnalyzer.getInstance()
@@ -38,7 +38,7 @@ class CrawlerController {
 
   @get('/showData')
   @use(checkLogin)
-  showData(req: BodyRequest, res: Response) {
+  showData(req: BodyRequest, res: Response): void {
     consola.info('showData: session.login', req.session?.login)
     try {
       const position = path.resolve(__dirname, '../../data/course.json');
