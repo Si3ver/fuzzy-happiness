@@ -1,6 +1,7 @@
 import 'reflect-metadata'
+import consola from 'consola'
 import { Request, Response } from 'express'
-import {controller, get} from './decorators'
+import {controller, get, post} from './decorators'
 import { getResponseData } from '../utils/util'
 
 interface BodyRequest extends Request {
@@ -11,11 +12,6 @@ interface BodyRequest extends Request {
 
 @controller
 class LoginController {
-
-  @get('/login')
-  login(req: BodyRequest, res: Response) {
-    res.send('login is running')
-  }
 
   @get('/')
   home(req: BodyRequest, res: Response) {
@@ -44,6 +40,24 @@ class LoginController {
     }
   }
 
+  @post('/login')
+  login(req: BodyRequest, res: Response) {
+    const { password } = req.body
+    const isLogin = req.session ? req.session.login : false
+
+    if (isLogin) {
+      res.json(getResponseData(false, '已经登录过'))
+    } else {
+      consola.info(req.session?.login)
+      if (password === '123' && req.session) {
+        req.session.login = true
+        res.json(getResponseData(true))
+      } else {
+        res.json(getResponseData(false, '登录失败'))
+      }
+    }
+  }
+
   @get('/logout')
   logout(req: BodyRequest, res: Response) {
     if (req.session) {
@@ -51,7 +65,4 @@ class LoginController {
     }
     res.json(getResponseData(true))
   }
-    
-  
-
 }

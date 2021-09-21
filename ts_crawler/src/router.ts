@@ -23,22 +23,6 @@
 
 // const router = Router()
 
-// router.post('/login', (req: BodyRequest, res: Response) => {
-//   const { password } = req.body
-//   const isLogin = req.session ? req.session.login : false
-
-//   if (isLogin) {
-//     res.json(getResponseData(false, '已经登录过'))
-//   } else {
-//     consola.info(req.session?.login)
-//     if (password === '123' && req.session) {
-//       req.session.login = true
-//       res.json(getResponseData(true))
-//     } else {
-//       res.json(getResponseData(false, '登录失败'))
-//     }
-//   }
-// })
 
 // router.get('/getData', checkLogin, (req: BodyRequest, res: Response) => {
 //   const secret = 'x3b174jsx'
