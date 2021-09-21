@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Redirect } from 'react-router'
 import axios from 'axios'
-import { Button } from 'antd'
+import { Button, message } from 'antd'
 import './index.css'
 
 export default function HomePage(): JSX.Element {
@@ -21,6 +21,18 @@ export default function HomePage(): JSX.Element {
       })
   }, [])
 
+  const logout = () => {
+    axios.get('/api/logout')
+      .then(res => {
+        console.log(res)
+        if (res.data?.data) {
+          setIsLogin(false)
+        } else {
+          message.error('退出失败！')
+        }
+      })
+  }
+
   console.log(loaded, isLogin)
   if (isLogin) {
     if (!loaded) return <div></div>
@@ -28,7 +40,7 @@ export default function HomePage(): JSX.Element {
       <div className="home-page">
         <Button type="primary" style={{marginLeft: '10px'}}>爬取</Button>
         <Button type="primary">展示</Button>
-        <Button type="ghost">退出</Button>
+        <Button type="ghost" onClick={logout}>退出</Button>
       </div>
     )
   }
