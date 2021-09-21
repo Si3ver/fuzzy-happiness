@@ -2,7 +2,7 @@ import express, { Request, Response, NextFunction } from 'express'
 import cookieSession from 'cookie-session'
 import './controller/LoginController'
 import './controller/CrawlerController'
-import { router } from './controller/decorators'
+import router from './router'
 
 const app = express()
 const port = 7001

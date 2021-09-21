@@ -1,7 +1,7 @@
 import 'reflect-metadata'
 import consola from 'consola'
 import { Request, Response } from 'express'
-import {controller, get, post} from './decorators'
+import { controller, get, post } from '../decorator'
 import { getResponseData } from '../utils/util'
 
 interface BodyRequest extends Request {
