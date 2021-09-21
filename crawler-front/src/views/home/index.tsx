@@ -8,6 +8,15 @@ export default function HomePage(): JSX.Element {
 
   const [loaded, setLoaded] = useState(false)
   const [isLogin, setIsLogin] = useState(true)
+  const [courseData, setCourseData] = useState<any>({})
+  // const [needUpdate, setNeedUpdate] = useState(false)
+
+  function fetchData() {
+    axios.get('/api/showData')
+    .then(res => {
+      setCourseData(res.data)
+    })
+  }
 
   useEffect(() => {
     axios.get('/api/isLogin')
@@ -21,25 +30,21 @@ export default function HomePage(): JSX.Element {
       })
   }, [])
 
+  useEffect(() => {
+    if (isLogin) {
+      fetchData()
+    }
+  }, [isLogin])
+
   const crawler = () => {
     axios.get('/api/getData')
     .then(res => {
       console.log(res)
       if (res.data?.data) {
         message.success('爬取成功！')
+        // setNeedUpdate(!needUpdate)
       } else {
         message.error('爬取失败！')
-      }
-    })
-  }
-
-  const showData = () => {
-    axios.get('/api/showData')
-    .then(res => {
-      if (res.data?.data) {
-        console.log(res.data?.data)
-      } else {
-        message.error('获取数据失败！')
       }
     })
   }
@@ -61,9 +66,11 @@ export default function HomePage(): JSX.Element {
     if (!loaded) return <div></div>
     return (
       <div className="home-page">
-        <Button type="primary" style={{marginLeft: '10px'}} onClick={crawler}>爬取</Button>
-        <Button type="primary" onClick={showData}>展示</Button>
-        <Button type="ghost" onClick={logout}>退出</Button>
+        <div className="buttons">
+          <Button type="primary" style={{marginLeft: '10px'}} onClick={crawler}>爬取</Button>
+          <Button type="ghost" onClick={logout}>退出</Button>
+        </div>
+        <pre>{JSON.stringify(courseData, null, 2)}</pre>
       </div>
     )
   }
