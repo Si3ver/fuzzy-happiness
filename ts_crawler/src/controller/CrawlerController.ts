@@ -15,12 +15,18 @@ interface BodyRequest extends Request {
 }
 
 const checkLogin = (req: BodyRequest, res: Response, next: NextFunction): void => {
+  consola.info('check login Middleware')
   const isLogin = !!(req.session ? req.session.login : false)
   if (isLogin) {
     next()
   } else {
     res.json(getResponseData(null, '请先登录'))
   }
+}
+
+const testMiddleware = (req: BodyRequest, res: Response, next: NextFunction): void => {
+  consola.info('test Middleware')
+  next()
 }
 
 @controller('/')
@@ -38,6 +44,7 @@ export class CrawlerController {
 
   @get('/showData')
   @use(checkLogin)
+  @use(testMiddleware)
   showData(req: BodyRequest, res: Response): void {
     consola.info('showData: session.login', req.session?.login)
     try {

@@ -3,7 +3,9 @@ import { RequestHandler } from 'express'
 
 function use(middleware: RequestHandler) {
   return function(target: CrawlerController | LoginController, key: string) {
-    Reflect.defineMetadata('middleware', middleware, target, key)
+    const originMiddlewares = Reflect.getMetadata('middlewares', target, key) || []
+    originMiddlewares.push(middleware)
+    Reflect.defineMetadata('middlewares', originMiddlewares, target, key)
   }
 }
 
