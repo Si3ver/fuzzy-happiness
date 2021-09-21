@@ -3,7 +3,9 @@ const router = Router()
 
 enum Method {
   get = 'get',
-  post = 'post'
+  post = 'post',
+  put = 'put',
+  del = 'delete'
 }
 
 // 自动生成路由
@@ -18,18 +20,18 @@ function controller(target: any) {
   }
 }
 
-function get(path: string) {
-  return function (target: any, key: string) {
-    Reflect.defineMetadata('path', path, target, key)
-    Reflect.defineMetadata('method', 'get', target, key)
+function getRequestDecorator(method: Method) {
+  return function(path: string) {
+    return function (target: any, key: string) {
+      Reflect.defineMetadata('path', path, target, key)
+      Reflect.defineMetadata('method', method, target, key)
+    }
   }
 }
 
-function post(path: string) {
-  return function (target: any, key: string) {
-    Reflect.defineMetadata('path', path, target, key)
-    Reflect.defineMetadata('method', 'post', target, key)
-  }
-}
+const get = getRequestDecorator(Method.get)
+const post = getRequestDecorator(Method.post)
+const put = getRequestDecorator(Method.put)
+const del = getRequestDecorator(Method.del)
 
-export { controller, get, post, router }
+export { controller, get, post, put, del, router }
