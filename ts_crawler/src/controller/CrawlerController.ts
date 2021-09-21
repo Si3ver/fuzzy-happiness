@@ -23,7 +23,7 @@ const checkLogin = (req: BodyRequest, res: Response, next: NextFunction): void =
   }
 }
 
-@controller
+@controller('/')
 export class CrawlerController {
 
   @get('/getData')

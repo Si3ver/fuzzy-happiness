@@ -10,7 +10,7 @@ interface BodyRequest extends Request {
   }
 }
 
-@controller
+@controller('/')
 export class LoginController {
   static isLogin(req: BodyRequest): boolean {
     return !!(req.session ? req.session.login : false)
